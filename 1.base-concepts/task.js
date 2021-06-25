@@ -37,7 +37,7 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
           month += date.getMonth() + 1;
       
       let intRateMonth = (interestRate / 100) / 12;
-      let montPay = credit * (Number(intRateMonth) + Number(intRateMonth) / (Math.pow((1 + Number(intRateMonth)),month) - 1));
+      let montPay = credit * (intRateMonth + intRateMonth / (Math.pow((1 + intRateMonth),month) - 1));
       totalAmount = parseFloat((montPay * month).toFixed(2));
     }   
   return totalAmount;
