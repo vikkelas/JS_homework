@@ -8,10 +8,8 @@ function getArrayParams(arr) {
   if(arr[i] > max) {max = arr[i]};
   if(arr[i] < min) {min = arr[i]};
     sum += arr[i];
-    avg = (sum / arr.length).toFixed(2);
-
   }
-
+  avg = (sum / arr.length).toFixed(2);
   // Ваш код
   return { min:min, max:max, avg:avg };
 }
@@ -41,8 +39,8 @@ function worker2(arr) {
   max = -101;
   for(let i = 0; i < arr.length; i += 1) { 
   if(arr[i] > max) {max = arr[i]};
-  if(arr[i] < min) {min = arr[i]};
-  diff = Math.abs(max-min);
+  if(arr[i] < min) {min = arr[i]};  
 }
+diff = Math.abs(max-min);
 return diff;
 }
