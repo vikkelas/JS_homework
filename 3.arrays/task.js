@@ -9,11 +9,7 @@ function compareArrays(arr1, arr2) {
 }
 
 function advancedFilter(arr) {
-  let resultArr;
-  let result = arr.filter((item) => item > 0);
-  result = result.filter((item) => item % 3 === 0);
-  resultArr = result.map((item) => item * 10);
-  // Ваш код
+  let resultArr = arr.filter((item) => item > 0).filter((item) => item % 3 === 0).map((item) => item * 10);
 
   return resultArr; // array
 }
