@@ -67,12 +67,11 @@ class Library {
       for (const item of this.books) {
          if(item[type] === value) {
             book = item;
-            return book;
-         } else {
-            return null
-         }
+         } 
       }
+      return book;
    }
+   
 
    giveBookByName (bookName) {  
       let book = null;
