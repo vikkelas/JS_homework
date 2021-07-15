@@ -85,4 +85,66 @@ class Library {
    };
 };
 
+// задача 3
+class Student {
+   constructor(name, gender, age) {
+      this.name = name;
+      this.gender = gender;
+      this.age = age;
+      this.subject = {};
+   }
+
+   setSubject(subjectName) {
+      this.subject[subjectName] = [];
+   }
+
+   addGrade(mark, subjectName) {
+      const check = mark > 0 && mark < 6 && Number.isInteger(mark);
+      if(check === false){
+         console.log("Ошибка, оценка должна быть числом от 1 до 5")
+      } else if(this.subject[subjectName] === undefined){
+         this.subject[subjectName] = [mark];
+      } else{ 
+        this.subject[subjectName].push(mark);
+      }
+    }
+
+    addMarks(subjectName, ...marks) {
+      if (this.subject[subjectName] === undefined){
+            this.subject[subjectName] = [...marks]
+         } else {
+         this.subject[subjectName] = [...this.subject[subjectName], ...marks];
+      }  
+    }
+
+    getAverageBySubject(subjectName) { 
+      if(this.subject[subjectName] === undefined) {         
+         return console.log("Предмет не существует");
+      }
+      const check =  this.subject[subjectName];
+      let sum = 0;
+      let avg = null;
+      for(const item of check){
+         sum += item;
+      }
+      avg = sum / check.length
+      return avg;
+   }
+
+   getAverage() {
+      let avg = 0;
+      let allSubject;
+      const len = Object.keys(this.subject)
+      for(let key in this.subject){
+         avg += this.getAverageBySubject(key)         
+      }
+      allSubject = avg / len.length;
+      return allSubject;
+    }
+
+    exclude = function(reason) {
+      delete this.subject;
+      this.excluded = reason;
+    }
+}
 
