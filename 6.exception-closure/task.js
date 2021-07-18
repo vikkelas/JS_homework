@@ -1,8 +1,9 @@
 function parseCount(number){
-   if(isNaN(Number.parseInt(number))){
+   const parse = Number.parseInt(number);
+   if(isNaN(parse)){
          throw new Error("Невалидное значение")
       } else {
-         return Number.parseInt(number)
+         return parse;
       }
    }
 
@@ -22,20 +23,17 @@ class Triangle {
       this.sideB = sideB;
       this.sideC = sideC;
      if (this.sideA + this.sideB < this.sideC || this.sideA + this.sideC < this.sideB || this.sideC + this.sideB < this.sideA){
-        const divError = new Error("Треугольник с такими сторонами не существует");
-        throw  divError;
+        throw new Error("Треугольник с такими сторонами не существует");
      }
    }
    
-   getPerimeter () {
-      const perimetr = this.sideA + this.sideB + this.sideC;
-      return perimetr;
+   getPerimeter () {      
+      return this.sideA + this.sideB + this.sideC;
    }
 
    getArea(){
       const p = this.getPerimeter() / 2;
-      const s = + Math.sqrt(p * (p - this.sideA)*(p - this.sideB)*(p - this.sideC)).toFixed(3);
-      return s;
+      return + Math.sqrt(p * (p - this.sideA)*(p - this.sideB)*(p - this.sideC)).toFixed(3);
    }
 }
 
@@ -51,9 +49,8 @@ const otherFigure = {
 
 function getTriangle(sideA, sideB, sideC){
    try{
-      const otherTriangel = new Triangle(sideA, sideB, sideC);
-      return otherTriangel;
-   } catch(Error) {
+      return new Triangle(sideA, sideB, sideC);
+   } catch(error) {
       return otherFigure;
    }
 }
