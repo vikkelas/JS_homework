@@ -7,7 +7,7 @@ function cachingDecoratorNew(func) {
     if(idx !== -1) {
       console.log("Из кэша: " + cache[idx].value);
       return "Из кэша: " + cache[idx].value;
-    } else {
+    }
       let result = func(...args);
       cache.push({hash: args.join(','), value: result})
       if(cache.length > 5) {
@@ -16,31 +16,29 @@ function cachingDecoratorNew(func) {
       console.log("Вычисляем: " + result);
       return "Вычисляем: " + result;
     }
-  }
   return wrapper;
 }
 
-
 function debounceDecoratorNew(func, ms) {
     let checkFunction = false;
-    return function() {
+    return function(...args) {
       if (checkFunction == false) {
-        func();
+        func(...args);
         checkFunction = true;
-        setTimeout(() => (checkFunction = false), ms);
+        setTimeout(() => (checkFunction = false, func(...args)), ms);
       }      
   };
 };
 
 function debounceDecorator2(func) {  
   let checkFunction = false;
-    function wrapper() {
-      let index = index + 1;
-      if (checkFunction == false) {
-        func();
+    function wrapper(...args) {
+       if (checkFunction == false) {
+         let i = 0;
+        func(...args);
         checkFunction = true;
-        wrapper.count.push(index)
-        setTimeout(() => (checkFunction = false), ms);
+        wrapper.count.push(i+=1)
+        setTimeout(() => (checkFunction = false, func(...args)), ms);
       }      
   };
   wrapper.count = [];
